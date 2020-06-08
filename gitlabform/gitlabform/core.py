@@ -7,6 +7,9 @@ from pathlib import Path
 import os
 from functools import wraps
 
+import luddite
+import pkg_resources
+
 from gitlabform.configuration import Configuration
 from gitlabform.configuration.core import ConfigFileNotFoundException
 from gitlabform.gitlab import GitLab
@@ -183,9 +186,15 @@ class GitLabFormCore(object):
         projects_and_groups = []
 
         if self.project_or_group == "ALL":
-            # all projects from all groups we have access to
-            logging.warning('>>> Processing ALL groups and and projects')
-            groups = self.gl.get_groups()
+            if self.c.get_include_personal_projects():
+                logging.warning(">>> Processing ALL groups and and projects, including users' personal projects"
+                                " (this may take a while...)")
+                groups = self.gl.get_groups_with_personal_namespaces()
+            else:
+                logging.warning('>>> Processing ALL groups and and projects')
+                groups = self.gl.get_groups()
+            print(str(groups))
+            exit(0)
         elif self.project_or_group == "ALL_DEFINED":
             logging.warning('>>> Processing ALL groups and projects defined in config')
             # all groups from config

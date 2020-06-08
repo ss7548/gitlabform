@@ -197,6 +197,15 @@ class ConfigurationProjectsAndGroups(ConfigurationCore):
         except KeyNotFoundException:
             return []
 
+    def get_include_personal_projects(self) -> bool:
+        """
+        :return: value of the "include_personal_projects" flag
+        """
+        try:
+            return self.get("include_personal_projects")
+        except KeyNotFoundException:
+            return False
+
 
 class ConfigNotFoundException(Exception):
     pass

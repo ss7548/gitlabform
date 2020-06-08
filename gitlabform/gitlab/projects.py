@@ -23,7 +23,7 @@ class GitLabProjects(GitLabCore):
         :return: sorted list of ALL projects you have access to, strings "group/project_name"
         """
         try:
-            result = self._make_requests_to_api("projects?order_by=name&sort=asc", paginated=True)
+            result = self._make_requests_to_api("projects?order_by=name&sort=asc&simple=true", paginated=True)
             return sorted(map(lambda x: x['path_with_namespace'], result))
         except NotFoundException:
             return []

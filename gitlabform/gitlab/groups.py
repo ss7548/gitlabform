@@ -24,6 +24,17 @@ class GitLabGroups(GitLabCore):
         result = self._make_requests_to_api("groups?all_available=true", paginated=True)
         return sorted(map(lambda x: x['full_path'], result))
 
+    def get_groups_with_personal_namespaces(self):
+        """
+        :return: sorted list of groups and users' personal namespaces (for users with projects)
+        """
+        # get a list of all projects and then a set containing their namespaces
+        # (it would be better to add a list of groups - `get_groups` - to a list of usernames of users with projects
+        #  but this feature does not work - see https://gitlab.com/gitlab-org/gitlab/-/issues/217960 )
+        result = self._make_requests_to_api("projects?order_by=name&sort=asc", paginated=True)
+        # we want only the paths = group/user's personal namespace (map), unique (set) and sorted (list, sorted)
+        return sorted(list(set(map(lambda x: x['namespace']['path'], result))))
+
     def get_projects(self, group):
         """
         :param group: group name

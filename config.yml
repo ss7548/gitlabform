@@ -28,6 +28,11 @@ gitlab:
 # Exception: when `skip: true` is set on a more specific level, given config section is not set AT ALL for given project.
 #
 
+# If this flag is set to `true` then when the program is run with `ALL` parameter it will not only process regular
+# groups but also all users' personal projects (like `username1/my_personal_project2`). For backwards compatibility
+# this is set to `false` if the flag does not exist in the config.
+include_personal_projects: false
+
 common_settings:
   # common settings for ALL projects in ALL groups
 
