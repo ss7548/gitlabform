@@ -30,7 +30,7 @@ setup(name='gitlabform',
             'certifi',  # we want the latest root certs for security
             'requests==2.24.0',
             'chardet==3.0.4',
-            'idna==2.10',
+            'idna==3.1',
             'Jinja2==2.11.2',
             'MarkupSafe==1.1.1',
             'PyYAML==5.3.1',
