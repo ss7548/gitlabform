@@ -33,7 +33,7 @@ setup(name='gitlabform',
             'idna==2.10',
             'Jinja2==2.11.2',
             'MarkupSafe==1.1.1',
-            'PyYAML==5.3.1',
+            'PyYAML==5.4.1',
             'urllib3==1.25.9',
       ],
       tests_require=[
