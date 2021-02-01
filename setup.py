@@ -34,7 +34,7 @@ setup(name='gitlabform',
             'Jinja2==2.11.2',
             'MarkupSafe==1.1.1',
             'PyYAML==5.3.1',
-            'urllib3==1.25.9',
+            'urllib3==1.26.3',
       ],
       tests_require=[
             'pytest',
